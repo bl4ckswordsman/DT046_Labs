@@ -1,11 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <stack>
-#include <unordered_map>
-#include <queue>
 #include "reader.h"
 #include "dfs.h"
-
 
 
 int main() {
@@ -20,20 +17,17 @@ int main() {
         std::cout << "Graph is connected." << std::endl;
     }
     else {
-        std::vector<int> disconnected_nodes = dfs_stack(adj_list);
-        if (disconnected_nodes.empty()) {
-            std::cout << "Graph is connected." << std::endl;
+        std::cout << "Graph is not connected." << std::endl;
+        std::cout << "Disconnected nodes: ";
+        // Run DFS again to find disconnected nodes and print them
+        std::vector<int> visited(meta.size(), NOT_VISITED);
+        dfs(0, adj_list, visited);
+        // Print disconnected nodes
+        for (const auto &node: get_disconnected_nodes(visited)) {
+            std::cout << node << " ";
         }
-        else {
-            std::cout << "Disconnected nodes:";
-            for (const auto& node : disconnected_nodes) {
-                std::cout << " " << node;
-            }
-            std::cout << std::endl;
-        }
+        std::cout << std::endl;
     }
-
-
 
     return 0;
 }
