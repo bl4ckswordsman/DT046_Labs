@@ -3,6 +3,8 @@
 #include <stack>
 #include "reader.h"
 #include "dfs.h"
+#include "bfs.h"
+#include "dijkstras.h"
 
 
 int main() {
@@ -28,6 +30,9 @@ int main() {
         }
         std::cout << std::endl;
     }
+
+    auto distance = dijkstras(0,3, adj_list);
+    std::cout << "Distance from 0 to 3: " << distance << std::endl;
 
     return 0;
 }
