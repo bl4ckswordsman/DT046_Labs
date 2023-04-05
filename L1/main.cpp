@@ -10,7 +10,7 @@ int main() {
 
     std::vector<std::vector<std::pair<int, double>>> adj_list(meta.size());
     for (const auto& edge : edge_list) {
-        adj_list[edge.n1].push_back({edge.n2, edge.weight});
+        adj_list[edge.n1].emplace_back(edge.n2, edge.weight);
     }
 
     if (is_graph_connected(adj_list)) {
