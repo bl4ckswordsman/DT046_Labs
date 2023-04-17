@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <stack>
 #include "reader.h"
 #include "dfs.h"
 #include "bfs.h"
