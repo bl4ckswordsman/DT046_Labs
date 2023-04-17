@@ -7,10 +7,10 @@
 
 #include <vector>
 #include <queue>
+#include "reader.h"
 
 
 
-void bfs(int node, const std::vector<std::vector<std::pair<int, double>>> &adj_list, std::vector<int> &visited);
-
+std::vector<int> bfs(int node, const adjacency_list_t &adj_list);
 
 #endif //DT046_L1_BFS_H

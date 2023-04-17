@@ -27,28 +27,36 @@ void print_disconnected_nodes(const std::vector<int>& visited) {
 int main() {
     // Read file and create edge list from it
     auto file_data = parse_file("../edges.txt");
-    auto meta = file_data.first;
-    auto edge_list = file_data.second;
 
-// Create adjacency list from edge list
-    std::vector<std::vector<std::pair<int, double>>> adj_list(meta.size());
-    for (const auto& edge : edge_list) {
-        adj_list[edge.n1].emplace_back(edge.n2, edge.weight);
-    }
 
-    auto visited_graph = dfs2(0, file_data);//= dfs(0, adj_list);
-// Check if graph is connected
-    if (is_graph_connected(visited_graph)) {
+        // DFS
+    std::cout << "\tDFS:" << std::endl;
+    auto visited_graph_dfs = dfs(0, file_data);
+
+    // Check if graph is connected
+    if (is_graph_connected(visited_graph_dfs)) {
         std::cout << "Graph is connected." << std::endl;
     } else {
         std::cout << "Graph is not connected." << std::endl;
-        print_disconnected_nodes(visited_graph);
+        print_disconnected_nodes(visited_graph_dfs);
+    }
+
+        // BFS
+    std::cout << "\tBFS:" << std::endl;
+    auto visited_graph_bfs = bfs(0, file_data);
+    // Check if graph is connected
+    if (is_graph_connected(visited_graph_bfs)) {
+        std::cout << "Graph is connected." << std::endl;
+    } else {
+        std::cout << "Graph is not connected." << std::endl;
+        print_disconnected_nodes(visited_graph_bfs);
     }
 
         // Dijkstra's algorithm
+    std::cout << "\tDijkstra's algorithm:" << std::endl;
     auto start_node = 0;
-    auto end_node = 19;
-    auto distance = dijkstras(start_node,end_node, adj_list);
+    auto end_node = 13;
+    auto distance = dijkstras(start_node, end_node, file_data);
     std::cout << "Distance from " << start_node << " to " << end_node << ": " << distance << std::endl;
 
     return 0;
