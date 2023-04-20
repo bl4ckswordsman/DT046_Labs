@@ -11,7 +11,7 @@
  * Sorts a vector of integers using insertion sort.
  * @param vect_in The vector to be sorted.
  * @return The sorted vector. */
-void insertion_sort(std::vector<int> vect_in);
+void insertion_sort(std::vector<int>& vect_in);
 
 void selection_sort(std::vector<int> vect_in);
 
