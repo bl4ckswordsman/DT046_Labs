@@ -1,8 +1,10 @@
 #include <iostream>
 #include "comp_sorting.h"
+#include "data_gen.h"
 
 int main() {
-    std::vector<int> vect = {5, 6, 3, 2, 8, 100, 0, 1};
+    std::vector<int> vect;
+    rand_gen_in_vect(10, vect);
     for (auto elem : vect) {
         std::cout << elem << std::endl;
     }

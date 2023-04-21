@@ -6,6 +6,7 @@
 #define DT046_L2_DATA_GEN_H
 
 #include <vector>
+#include <random>
 
 void rand_gen_in_vect(int n, std::vector<int>& vect_out);
 void monot_incr_gen_in_vect(int n, std::vector<int>& vect_out);
