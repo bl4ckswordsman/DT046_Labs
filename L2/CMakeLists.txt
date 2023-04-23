@@ -3,4 +3,4 @@ project(DT046_L2)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(L2 main.cpp comp_sorting.h comp_sorting.cpp data_gen.h data_gen.cpp time_measurement.h time_measurement.cpp data_reporting.h)
+add_executable(L2 main.cpp comp_sorting.h comp_sorting.cpp data_gen.h data_gen.cpp time_measurement.h time_measurement.cpp data_reporting.h data_reporting.cpp)
