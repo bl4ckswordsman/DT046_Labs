@@ -13,9 +13,18 @@
 #include <numeric>
 #include <functional>
 
-
+/**
+ * Calculates the mean of a vector of doubles.
+ * @param data The vector of doubles.
+ * @return The mean of the vector. */
 double calculate_stdev(std::vector<double> data, double mean);
 
-void test_sorting(const std::string& filename, const std::function<void(std::vector<int>&)>& sort_fn);
+/**
+ * Calculates the standard deviation of a vector of doubles.
+ * @param data The vector of doubles.
+ * @param mean The mean of the vector.
+ * @return The standard deviation of the vector. */
+void measure_sort_perf(const std::string& filename, void (*sorting_func)(std::vector<int>&),
+                       void (*gen_func)(int, std::vector<int>&));
 
 #endif //DT046_L2_DATA_REPORTING_H

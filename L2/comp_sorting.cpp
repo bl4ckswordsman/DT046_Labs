@@ -5,14 +5,14 @@
 #include "comp_sorting.h"
 
 void insertion_sort(std::vector<int>& vect_in) {
-    for (int i = 1; i < vect_in.size(); i++) {
-        int key = vect_in[i];
-        int j = i - 1;
-        while (j >= 0 && vect_in[j] > key) {
-            vect_in[j + 1] = vect_in[j];
-            j--;
+    for (int curr_idx = 1; curr_idx < vect_in.size(); curr_idx++) {
+        int curr_val = vect_in[curr_idx];
+        int prev_idx = curr_idx - 1;
+        while (prev_idx >= 0 && vect_in[prev_idx] > curr_val) {
+            vect_in[prev_idx + 1] = vect_in[prev_idx];
+            prev_idx--;
         }
-        vect_in[j + 1] = key;
+        vect_in[prev_idx + 1] = curr_val;
     }
 }
 

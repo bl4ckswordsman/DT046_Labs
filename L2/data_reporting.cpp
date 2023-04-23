@@ -16,9 +16,11 @@ double calculate_stdev(std::vector<double> data, double mean) {
 
 
 // Test a sorting function and write the results to a file
-void test_sorting(const std::string &filename, const std::function<void(std::vector<int> &)> &sort_fn) {
+void measure_sort_perf(const std::string &filename, void (*sorting_func)(std::vector<int> &),
+                       void (*gen_func)(int, std::vector<int> &)) {
     std::ofstream out_file(filename);
-    out_file << "Insertion sort\n";
+    std::string title = filename.substr(0, filename.size()-4);
+    out_file << "Sorting performance - " << title << "\n";
     out_file << std::left << std::setw(15) << "N" << std::setw(15) << "T[ms]" << std::setw(15) << "Stdev[ms]"
              << std::setw(15) << "Samples" << "\n";
 
@@ -29,10 +31,10 @@ void test_sorting(const std::string &filename, const std::function<void(std::vec
 
         for (int j = 0; j < 5; ++j) {
             std::vector<int> v;
-            rand_gen_in_vect(n, v);
+            gen_func(n, v);
 
             auto start_time = std::chrono::high_resolution_clock::now();
-            sort_fn(v);
+            sorting_func(v);
             auto end_time = std::chrono::high_resolution_clock::now();
 
             auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
@@ -45,10 +47,8 @@ void test_sorting(const std::string &filename, const std::function<void(std::vec
         out_file << std::left << std::setw(15) << n << std::setw(15) << mean_time_ms << std::setw(15)
                  << stdev_ms << std::setw(15) << times.size() << "\n";
 
-        // print results
         std::cout << "n: " << n << ", mean time: " << mean_time_ms << ", stdev: " << stdev_ms << "\n";
 
-        // write results to file
         out_file.flush();
     }
 
