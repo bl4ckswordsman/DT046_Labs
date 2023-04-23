@@ -29,7 +29,7 @@ def plot_data(file_name):
     # Create the plot
     x_new = np.linspace(n[0], n[-1], 100)
     y_new = np.polyval(popt, x_new)
-    plt.errorbar(n, mean_time_ms, yerr=stdev_ms, fmt='o-', capsize=5, label='Data')
+    plt.errorbar(n, mean_time_ms, yerr=stdev_ms, fmt='o', capsize=5, label='Data')  # 'o-' for line
     plt.plot(x_new, y_new, '-', label='Fit')
 
     # Set the title and axis labels
@@ -38,8 +38,8 @@ def plot_data(file_name):
     plt.ylabel('Mean time [ms]')
     plt.legend()
 
-    # Display the plot
-    plt.show()
-
 
 plot_data('cmake-build-release/table.txt')
+
+# Display the plot
+plt.show()
