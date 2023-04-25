@@ -50,10 +50,17 @@ def plot_data(file_name):
 
 prefix = 'cmake-build-release/'
 
-plot_data(prefix + 'insert_sort_const.txt')
-plot_data(prefix + 'insert_sort_rand.txt')
-plot_data(prefix + 'insert_sort_monot_incr.txt')
-plot_data(prefix + 'insert_sort_monot_decr.txt')
+# Insertion sort
+#plot_data(prefix + 'insert_sort_const.txt')
+#plot_data(prefix + 'insert_sort_rand.txt')
+#plot_data(prefix + 'insert_sort_monot_incr.txt')
+#plot_data(prefix + 'insert_sort_monot_decr.txt')
+
+# Selection sort
+#plot_data(prefix + 'select_sort_const.txt')
+#plot_data(prefix + 'select_sort_rand.txt')
+#plot_data(prefix + 'select_sort_monot_incr.txt')
+#plot_data(prefix + 'select_sort_monot_decr.txt')
 
 
 

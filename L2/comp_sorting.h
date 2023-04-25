@@ -13,7 +13,7 @@
  * @return The sorted vector. */
 void insertion_sort(std::vector<int>& vect_in);
 
-void selection_sort(std::vector<int> vect_in);
+void selection_sort(std::vector<int>& vect_in);
 
 
 
