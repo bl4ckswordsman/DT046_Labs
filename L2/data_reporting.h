@@ -20,10 +20,10 @@
 double calculate_stdev(std::vector<double> data, double mean);
 
 /**
- * Calculates the standard deviation of a vector of doubles.
- * @param data The vector of doubles.
- * @param mean The mean of the vector.
- * @return The standard deviation of the vector. */
+ * Test a sorting function and write the results to a file.
+ * @param filename The name of the file to write to.
+ * @param sorting_func The sorting function to test.
+ * @param gen_func The function to generate the data to be sorted. */
 void measure_sort_perf(const std::string& filename, void (*sorting_func)(std::vector<int>&),
                        void (*gen_func)(int, std::vector<int>&));
 
