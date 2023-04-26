@@ -62,6 +62,18 @@ prefix = 'cmake-build-release/'
 #plot_data(prefix + 'select_sort_monot_incr.txt')
 #plot_data(prefix + 'select_sort_monot_decr.txt')
 
+# Right pivot quick sort
+#plot_data(prefix + 'right_pivot_quick_sort_const.txt')
+#plot_data(prefix + 'right_pivot_quick_sort_rand.txt')
+#plot_data(prefix + 'right_pivot_quick_sort_monot_incr.txt')
+#plot_data(prefix + 'right_pivot_quick_sort_monot_decr.txt')
+
+# Median of three pivot quick sort
+plot_data(prefix + 'medof3_quick_sort_const.txt')
+plot_data(prefix + 'medof3_quick_sort_rand.txt')
+plot_data(prefix + 'medof3_quick_sort_monot_incr.txt')
+plot_data(prefix + 'medof3_quick_sort_monot_decr.txt')
+
 
 
 # Display the plot

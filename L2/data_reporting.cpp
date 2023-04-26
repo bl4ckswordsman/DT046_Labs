@@ -34,6 +34,7 @@ void measure_sort_perf(const std::string &filename, void (*sorting_func)(std::ve
 
     std::vector<int> ns{samp1, samp2, samp3, samp4, samp5};
 
+    std ::cout << "Testing " << title << "...\n";
     for (auto& n : ns) {
         std::vector<double> times(samp_num);
 

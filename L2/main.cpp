@@ -19,6 +19,28 @@ int main() {
     measure_sort_perf("select_sort_monot_incr.txt", selection_sort, monot_incr_gen_in_vect);
     measure_sort_perf("select_sort_monot_decr.txt", selection_sort, monot_decr_gen_in_vect);*/
 
+    // Hoare right-pivot quick sort
+/*    measure_sort_perf("right_pivot_quick_sort_rand.txt", r_pivot_quick_sort_test,
+                      rand_gen_in_vect);
+    measure_sort_perf("right_pivot_quick_sort_const.txt", r_pivot_quick_sort_test,
+                      const_gen_in_vect);
+    measure_sort_perf("right_pivot_quick_sort_monot_incr.txt", r_pivot_quick_sort_test,
+                      monot_incr_gen_in_vect);
+    measure_sort_perf("right_pivot_quick_sort_monot_decr.txt", r_pivot_quick_sort_test,
+                      monot_decr_gen_in_vect);*/
+
+    // Hoare median-of-three quick sort
+    measure_sort_perf("medof3_quick_sort_rand.txt", med3_pivot_quick_sort_test,
+                      rand_gen_in_vect);
+    measure_sort_perf("medof3_quick_sort_const.txt", med3_pivot_quick_sort_test,
+                        const_gen_in_vect);
+    measure_sort_perf("medof3_quick_sort_monot_incr.txt", med3_pivot_quick_sort_test,
+                        monot_incr_gen_in_vect);
+    measure_sort_perf("medof3_quick_sort_monot_decr.txt", med3_pivot_quick_sort_test,
+                        monot_decr_gen_in_vect);
+
+
+
 
 
 
