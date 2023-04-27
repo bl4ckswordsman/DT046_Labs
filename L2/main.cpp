@@ -29,7 +29,7 @@ int main() {
     measure_sort_perf("right_pivot_quick_sort_monot_decr.txt", r_pivot_quick_sort_test,
                       monot_decr_gen_in_vect);
 
-    // Hoare median-of-three quick sort
+    // Hoare median_of_3-of-three quick sort
     /*measure_sort_perf("medof3_quick_sort_rand.txt", med3_pivot_quick_sort_test,
                       rand_gen_in_vect);
     measure_sort_perf("medof3_quick_sort_const.txt", med3_pivot_quick_sort_test,
@@ -52,6 +52,16 @@ int main() {
     Quicksort (Right Pivot)         O(n^2)      O(n*log(n))     O(n^2)          O(n^2)
     Quicksort (Median of 3 Pivot)   O(n*log(n)) O(n*log(n))     O(n*log(n))     O(n*log(n))
     std::sort                       O(n*log(n)) O(n*log(n))     O(n*log(n))     O(n*log(n)) */
+
+
+/*    measure_sort_perf("medof3_quick_sort_rand.txt", quicksort_test,
+                      rand_gen_in_vect);
+    measure_sort_perf("medof3_quick_sort_const.txt", quicksort_test,
+                      const_gen_in_vect);
+    measure_sort_perf("medof3_quick_sort_monot_incr.txt", quicksort_test,
+                        monot_incr_gen_in_vect);
+    measure_sort_perf("medof3_quick_sort_monot_decr.txt", quicksort_test,
+                        monot_decr_gen_in_vect);*/
 
 
 

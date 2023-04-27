@@ -15,7 +15,10 @@ void insertion_sort(std::vector<int>& vect_in);
 
 void selection_sort(std::vector<int>& vect_in);
 
-int partition(std::vector<int>& vect_in, int left, int right);
+int partition(std::vector<int> &vect_in, int low, int high, int pivot);
+
+int partition_m3(std::vector<int> &vect_in, int low, int high, int pivot);
+
 
 /**
  * Sorts a vector of integers using Hoare's quick sort wth the last element as pivot.
@@ -25,15 +28,13 @@ void r_pivot_quick_sort(std::vector<int>& vect_in, int left, int right);
 
 void r_pivot_quick_sort_test(std::vector<int>& vect_in);
 
-int med3_partition(std::vector<int>& vect_in, int left, int right);
 
-/**
- * Sorts a vector of integers using Hoare's quick sort wth the median of three as pivot.
- * @param vect_in The vector to be sorted.
- * @return The sorted vector. */
-void medof3_quick_sort(std::vector<int>& vect_in, int left, int right);
 
-void med3_pivot_quick_sort_test(std::vector<int>& vect_in);
+void m3_piv_quick_sort(std::vector<int>& vect_in, int low, int high);
+
+void quicksort_test(std::vector<int>& vect_in);
+
+int median_of_3(int a, int b, int c);
 
 
 
