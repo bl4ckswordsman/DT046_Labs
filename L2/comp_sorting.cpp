@@ -2,6 +2,7 @@
 // Created by amarildo on 2023-04-18.
 //
 
+#include <algorithm>
 #include "comp_sorting.h"
 
 void insertion_sort(std::vector<int>& vect_in) {
@@ -143,6 +144,10 @@ int median_of_3(int a, int b, int c) {
 
 void quicksort_test(std::vector<int> &vect_in) {
     m3_piv_quick_sort(vect_in, 0, vect_in.size() - 1);
+}
+
+void std_sort_test(std::vector<int> &vect_in) {
+    std::sort(vect_in.begin(),vect_in.end());
 }
 
 

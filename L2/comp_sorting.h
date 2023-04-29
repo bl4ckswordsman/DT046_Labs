@@ -36,6 +36,8 @@ void quicksort_test(std::vector<int>& vect_in);
 
 int median_of_3(int a, int b, int c);
 
+void std_sort_test(std::vector<int>& vect_in);
+
 
 
 #endif //DT046_L2_COMP_SORTING_H

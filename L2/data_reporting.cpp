@@ -74,60 +74,6 @@ void measure_sort_perf(const std::string &filename, void (*sorting_func)(std::ve
     out_file.close();
 }
 
-void measure_std_sort_perf(const std::string &filename, void (*gen_func)(int, std::vector<int> &)) {
-    std::ofstream out_file(filename);
-    std::string title = filename.substr(0, filename.size()-4);
-    out_file << "Sorting performance - " << title << "\n";
-    out_file << std::left << std::setw(15) << "N" << std::setw(15) << "T[ms]" << std::setw(15) << "Stdev[ms]"
-             << std::setw(15) << "Samples" << "\n";
-
-    const int samp1 = 2000;
-    const int samp11 = 4000;
-    const int samp12 = 6000;
-    const int samp2 = 8000;
-    const int samp3 = 12000;
-    const int samp31 = 14000;
-    const int samp32 = 16000;
-    const int samp33 = 30000;
-    const int samp4 = 50000;
-    const int samp41 = 70000;
-    const int samp5 = 100000;
-
-    const int samp_num = 5;
-
-    std::vector<int> ns{samp1, samp11, samp12, samp2, samp3, samp31, samp32, samp33, samp4, samp41, samp5};
-
-    std ::cout << "Testing " << title << "...\n";
-    for (auto& n : ns) {
-        std::vector<double> times(samp_num);
-
-        for (int j = 0; j < samp_num; ++j) {
-            std::vector<int> v;
-            gen_func(n, v);
-            auto first = v.begin();
-            auto last = v.end();
-
-            auto start_time = std::chrono::high_resolution_clock::now();
-            std::sort(first, last);
-            auto end_time = std::chrono::high_resolution_clock::now();
-
-            auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
-            times[j] = duration_ms / static_cast<double>(1000);
-        }
-
-        double mean_time_ms = std::accumulate(times.begin(), times.end(), 0.0) / times.size();
-        double stdev_ms = calculate_stdev(times, mean_time_ms);
-
-        out_file << std::left << std::setw(15) << n << std::setw(15) << mean_time_ms << std::setw(15)
-                 << stdev_ms << std::setw(15) << times.size() << "\n";
-
-        std::cout << "n: " << n << ", mean time: " << mean_time_ms << ", stdev: " << stdev_ms << "\n";
-
-        out_file.flush();
-    }
-
-    out_file.close();
-}
 
 
 

@@ -29,6 +29,5 @@ std::string get_title(const std::string& txt_file);
 void measure_sort_perf(const std::string& filename, void (*sorting_func)(std::vector<int>&),
                        void (*gen_func)(int, std::vector<int>&));
 
-void measure_std_sort_perf(const std::string& filename, void (*gen_func)(int, std::vector<int>&));
 
 #endif //DT046_L2_DATA_REPORTING_H
