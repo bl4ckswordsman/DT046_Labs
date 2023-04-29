@@ -19,6 +19,8 @@
  * @return The mean of the vector. */
 double calculate_stdev(std::vector<double> data, double mean);
 
+std::string get_title(const std::string& txt_file);
+
 /**
  * Test a sorting function and write the results to a file.
  * @param filename The name of the file to write to.
