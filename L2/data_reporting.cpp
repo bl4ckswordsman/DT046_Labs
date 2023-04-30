@@ -28,24 +28,13 @@ void measure_sort_perf(const std::string &filename, void (*sorting_func)(std::ve
     out_file << std::left << std::setw(15) << "N" << std::setw(15) << "T[ms]" << std::setw(15) << "Stdev[ms]"
              << std::setw(15) << "Samples" << "\n";
 
-    const int samp1 = 2000;
-    const int samp11 = 4000;
-    const int samp12 = 6000;
-    const int samp2 = 8000;
-    const int samp3 = 12000;
-    const int samp31 = 14000;
-    const int samp32 = 16000;
-    const int samp33 = 30000;
-    const int samp4 = 50000;
-    const int samp41 = 70000;
-    const int samp5 = 100000;
-
+    // Number of samples to take for each N
     const int samp_num = 10;
-
-    std::vector<int> ns{samp1, samp11, samp12, samp2, samp3, samp31, samp32, samp33, samp4, samp41, samp5};
+    // Vector of N values to test
+    std::vector<int> samples_v{2000, 4000, 6000, 8000, 12'000, 14'000, 16'000, 30'000, 50'000, 70'000, 100'000};
 
     std ::cout << "Testing " << title << "...\n";
-    for (auto& n : ns) {
+    for (auto& n : samples_v) {
         std::vector<double> times(samp_num);
 
         for (int j = 0; j < samp_num; ++j) {
