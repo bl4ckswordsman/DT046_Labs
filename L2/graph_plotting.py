@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import curve_fit
 
-#import matplotlib
-#matplotlib.use('Agg')
+
+# import matplotlib
+# matplotlib.use('Agg')
 
 
 # Get the point label from the plot title of the format "XXXXX_sort_LABEL"
@@ -12,7 +13,7 @@ def get_point_lab(plot_title):
     return plot_title[plot_title.index("_sort_") + len("_sort_"):]
 
 
-def plot_data(file_name):
+def plot_data(file_name, fit_func_expr):
     # Read in the data file using pandas
     df = pd.read_csv(file_name, delim_whitespace=True, skiprows=1)
 
@@ -38,7 +39,7 @@ def plot_data(file_name):
 
     point_lab = get_point_lab(plot_title_temp)
     plt.errorbar(n, mean_time_ms, yerr=stdev_ms, fmt='o', capsize=5, label=point_lab)  # 'o-' for line
-    plt.plot(x_new, y_new, '-', label=point_lab)     # , label='Fit'
+    plt.plot(x_new, y_new, '-', label=fit_func_expr + ' (approx.fit)')  # point_lab)     # , label='Fit'
 
     # Set the title and axis labels
     plt.title(plot_title)
@@ -50,37 +51,41 @@ def plot_data(file_name):
 prefix = 'Test_results/'
 
 # Insertion sort
-#plot_data(prefix + 'insert_sort_const.txt')
-#plot_data(prefix + 'insert_sort_rand.txt')
-#plot_data(prefix + 'insert_sort_monot_incr.txt')
-#plot_data(prefix + 'insert_sort_monot_decr.txt')
+plt.figure('Fig1')
+plot_data(prefix + 'insert_sort_const.txt', '')
+plot_data(prefix + 'insert_sort_monot_incr.txt', '')
+plt.figure('Fig2')
+plot_data(prefix + 'insert_sort_rand.txt', '')   # t=0.5N²
+plot_data(prefix + 'insert_sort_monot_decr.txt', '')    # t=N²
 
 # Selection sort
-#plot_data(prefix + 'select_sort_const.txt')
-#plot_data(prefix + 'select_sort_rand.txt')
-#plot_data(prefix + 'select_sort_monot_incr.txt')
-#plot_data(prefix + 'select_sort_monot_decr.txt')
+plt.figure('Fig3')
+plot_data(prefix + 'select_sort_const.txt', '')     # t=N²
+plot_data(prefix + 'select_sort_rand.txt', '')
+plot_data(prefix + 'select_sort_monot_incr.txt', '')
+plot_data(prefix + 'select_sort_monot_decr.txt', '')
 
 # Right pivot quick sort
-plot_data(prefix + 'right_pivot_quick_sort_const.txt')
-#plot_data(prefix + 'right_pivot_quick_sort_rand.txt')
-#plot_data(prefix + 'right_pivot_quick_sort_monot_incr.txt')
-#plot_data(prefix + 'right_pivot_quick_sort_monot_decr.txt')
+plt.figure('Fig4')
+plot_data(prefix + 'right_pivot_quick_sort_const.txt', '')
+plot_data(prefix + 'right_pivot_quick_sort_rand.txt', '')   # t=NlogN
+plt.figure('Fig5')
+plot_data(prefix + 'right_pivot_quick_sort_monot_incr.txt', '')
+plot_data(prefix + 'right_pivot_quick_sort_monot_decr.txt', '')
 
 # Median of three pivot quick sort
-#plot_data(prefix + 'medof3_quick_sort_const.txt')
-#plot_data(prefix + 'medof3_quick_sort_rand.txt')
-#plot_data(prefix + 'medof3_quick_sort_monot_incr.txt')
-#plot_data(prefix + 'medof3_quick_sort_monot_decr.txt')
+plt.figure('Fig6')
+plot_data(prefix + 'medof3_quick_sort_const.txt','')
+plot_data(prefix + 'medof3_quick_sort_rand.txt', '')
+plot_data(prefix + 'medof3_quick_sort_monot_incr.txt', '')
+plot_data(prefix + 'medof3_quick_sort_monot_decr.txt', '')
 
 # std::sort
-#plot_data(prefix + 'std_sort_const.txt')
-#plot_data(prefix + 'std_sort_rand.txt')
-#plot_data(prefix + 'std_sort_monot_incr.txt')
-#plot_data(prefix + 'std_sort_monot_decr.txt')
-
-
-
+plt.figure('Fig7')
+plot_data(prefix + 'std_sort_const.txt', '')
+plot_data(prefix + 'std_sort_rand.txt', '')
+plot_data(prefix + 'std_sort_monot_incr.txt', '')
+plot_data(prefix + 'std_sort_monot_decr.txt', '')
 
 
 # Display the plot
