@@ -32,7 +32,7 @@ void r_pivot_quick_sort_test(std::vector<int>& vect_in);
 
 void m3_piv_quick_sort(std::vector<int>& vect_in, int low, int high);
 
-void quicksort_test(std::vector<int>& vect_in);
+void med3_quick_sort_test(std::vector<int>& vect_in);
 
 int median_of_3(int a, int b, int c);
 

@@ -142,7 +142,7 @@ int median_of_3(int a, int b, int c) {
 
 
 
-void quicksort_test(std::vector<int> &vect_in) {
+void med3_quick_sort_test(std::vector<int> &vect_in) {
     m3_piv_quick_sort(vect_in, 0, vect_in.size() - 1);
 }
 
