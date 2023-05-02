@@ -4,7 +4,7 @@
 #include "data_gen.h"
 
 
-void sieve_of_eratosthenes(int n, std::vector<bool> &vect) {
+void gen_primes(int n, std::vector<bool> &vect) {
     vect[0] = false;
     vect[1] = false;
     int i = 2;

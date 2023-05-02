@@ -12,7 +12,7 @@
  * @param n The number of elements in the vector.
  * @param vect The vector to be filled with primes.
  */
-void sieve_of_eratosthenes(int n, std::vector<bool>& vect);
+void gen_primes(int n, std::vector<bool>& vect);
 
 
 #endif //L3_DATA_GEN_H
