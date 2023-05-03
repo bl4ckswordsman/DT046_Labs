@@ -54,9 +54,9 @@ int main() {
 
 
     /*Algorithm                     Random      Constant        Increasing      Decreasing
-    Insertion Sort                  O(n^2)      O(n)            O(n^2)          O(n^2)
+    Insertion Sort                  O(n^2)      O(n)            O(n)            O(n^2)
     Selection Sort                  O(n^2)      O(n^2)          O(n^2)          O(n^2)
-    Quicksort (Right Pivot)         O(n^2)      O(n*log(n))     O(n^2)          O(n^2)
+    Quicksort (Right Pivot)         O(n*log(n)) O(n^2)          O(n^2)          O(n^2)
     Quicksort (Median of 3 Pivot)   O(n*log(n)) O(n*log(n))     O(n*log(n))     O(n*log(n))
     std::sort                       O(n*log(n)) O(n*log(n))     O(n*log(n))     O(n*log(n)) */
 
