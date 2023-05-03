@@ -35,43 +35,56 @@ void selection_sort(std::vector<int>& vect_in) {
 
 }
 
+
 void r_pivot_quick_sort(std::vector<int> &vect_in, int left, int right) {
     if (left < right) {
-        int pivot = vect_in[right];
-        int pivot_idx = partition(vect_in, left, right, pivot);
+        int pivot_idx = partition(vect_in, left, right);
+
         r_pivot_quick_sort(vect_in, left, pivot_idx - 1);
         r_pivot_quick_sort(vect_in, pivot_idx + 1, right);
     }
 
 }
 
+int partition(std::vector<int> &vect_in, int low, int high) {
+    int pivot = vect_in[high];  // pivot is the last element in the array
+    int i = low - 1;  // index of smaller element
 
-
-/*int partition(std::vector<int> &vect_in, int low, int high, int pivot) {
-    int i = low - 1; // index of smaller element
     for (int j = low; j <= high - 1; j++) {
         if (vect_in[j] <= pivot) {
             i++;  // increment index of smaller element
             std::swap(vect_in[i], vect_in[j]);
         }
     }
+
     // Place pivot at its correct position
     std::swap(vect_in[i + 1], vect_in[high]);
-    return i + 1;
-}*/
 
-int partition(std::vector<int> &vect_in, int low, int high, int pivot) {
-    int i = low - 1, j = high; // initialize i and j
-    while (true) {
-        while (vect_in[++i] < pivot); // increment i until vect_in[i] >= pivot
-        while (j > low && vect_in[--j] > pivot); // decrement j until vect_in[j] <= pivot or j == low
-        if (i >= j) break; // if i and j cross or meet, break
-        std::swap(vect_in[i], vect_in[j]); // swap vect_in[i] and vect_in[j]
-    }
-    // Place pivot at its correct position
-    std::swap(vect_in[i], vect_in[high]);
-    return i;
+    return i + 1;  // return the index of pivot
 }
+
+/*int partition(std::vector<int> &vect_in, int low, int high, int pivot) {
+    while (true) {
+// Increment i until vect_in[i] is greater than or equal to pivot
+        while (vect_in[++i] < pivot);
+
+// Decrement j until vect_in[j] is less than or equal to pivot
+        while (j > low && vect_in[--j] > pivot);
+
+        if (i >= j) {
+// If i and j cross or meet, break the loop
+            break;
+        }
+
+// Swap vect_in[i] and vect_in[j]
+        std::swap(vect_in[i], vect_in[j]);
+    }
+
+// Place pivot at its correct position
+    std::swap(vect_in[i], vect_in[high]);
+
+    return i;
+}*
 
 /* ALTERNATIVE
 while (true) {
@@ -96,19 +109,36 @@ std::swap(vect_in[i], vect_in[high]);
 return i;
 */
 
+/* OLDER ALTERNATIVE
+
+     int i = low - 1, j = high; // initialize i and j
+    while (true) {
+        while (vect_in[++i] < pivot); // increment i until vect_in[i] >= pivot
+        while (j > low && vect_in[--j] > pivot); // decrement j until vect_in[j] <= pivot or j == low
+        if (i >= j) break; // if i and j cross or meet, break
+        std::swap(vect_in[i], vect_in[j]); // swap vect_in[i] and vect_in[j]
+    }
+    // Place pivot at its correct position
+    std::swap(vect_in[i], vect_in[high]);
+    return i;
+
+*/
+
 
 int partition_m3(std::vector<int> &vect_in, int low, int high, int pivot) {
-    int i = low, j = high;
-    while (i <= j) {
-        while (vect_in[i] < pivot) i++;
-        while (vect_in[j] > pivot) j--;
-        if (i <= j) {
-            std::swap(vect_in[i], vect_in[j]);
+    int i = low - 1, j = high + 1;
+    while (true) {
+        do {
             i++;
+        } while (vect_in[i] < pivot);
+        do {
             j--;
+        } while (vect_in[j] > pivot);
+        if (i >= j) {
+            return j;
         }
+        std::swap(vect_in[i], vect_in[j]);
     }
-    return i;
 }
 
 
@@ -116,29 +146,78 @@ void r_pivot_quick_sort_test(std::vector<int> &vect_in) {
     r_pivot_quick_sort(vect_in, 0, vect_in.size() - 1);
 }
 
+int median_of_3(int a, int b, int c) {
+    if (a <= b && b <= c) return b;
+    if (c <= b && b <= a) {
+        std::swap(a, c);
+        return b;
+    }
+    if (b <= a && a <= c) {
+        std::swap(a, b);
+        return b;
+    }
+    if (c <= a && a <= b) {
+        std::swap(a, c);
+        std::swap(b, c);
+        return b;
+    }
+    std::swap(a, b);
+    if (c <= b) {
+        std::swap(b, c);
+        if (a <= b) {
+            return b;
+        }
+        std::swap(a, b);
+        return b;
+    }
+    return b;
+}
+
+
+int median_of_3(std::vector<int> &vect_in, int low, int high) {
+    int mid = low + (high - low) / 2;
+    if (vect_in[low] > vect_in[high]) {
+        std::swap(vect_in[low], vect_in[high]);
+    }
+    if (vect_in[mid] < vect_in[low]) {
+        std::swap(vect_in[mid], vect_in[low]);
+    }
+    if (vect_in[high] < vect_in[mid]) {
+        std::swap(vect_in[high], vect_in[mid]);
+    }
+    // arr[low] <= arr[mid] <= arr[high]
+    return vect_in[mid];
+}
 
 void m3_piv_quick_sort(std::vector<int> &vect_in, int low, int high) {
+
     if (low < high) {
         // Find median_of_3 of vect_in[low], vect_in[high] and vect_in[(low + high) / 2]
         int mid = (low + high) / 2;
         int pivot = median_of_3(vect_in[low], vect_in[mid], vect_in[high]);
 
-        // Partition the vector around the pivot
+        // Partition the vector around the pivot using Hoare partition scheme
         int pi = partition_m3(vect_in, low, high, pivot);
 
         // Recursively sort left and right halves
-        m3_piv_quick_sort(vect_in, low, pi - 1);
-        m3_piv_quick_sort(vect_in, pi, high);
+        m3_piv_quick_sort(vect_in, low, pi);
+        m3_piv_quick_sort(vect_in, pi + 1, high);
     }
+/*
+    if (low < high) {
+        // Find median of 3
+        int pivot = median_of_3(vect_in, low, high);
+
+        // Partition vector around pivot using Hoare's partitioning scheme
+        int p = partition_m3(vect_in, low, high, pivot);
+
+        // Recursively sort left and right sub-arrays
+        m3_piv_quick_sort(vect_in, low, p);
+        m3_piv_quick_sort(vect_in, p + 1, high);
+    }*/
 }
 
-int median_of_3(int a, int b, int c) {
-    if (a <= b && b <= c) return b;
-    if (c <= b && b <= a) return b;
-    if (b <= a && a <= c) return a;
-    if (c <= a && a <= b) return a;
-    return c;
-}
+
 
 
 

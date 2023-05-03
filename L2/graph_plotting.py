@@ -67,15 +67,17 @@ plot_data(prefix + 'select_sort_monot_decr.txt', '')
 
 # Right pivot quick sort
 plt.figure('Fig4')
-plot_data(prefix + 'right_pivot_quick_sort_const.txt', '')
+
 plot_data(prefix + 'right_pivot_quick_sort_rand.txt', '')   # t=NlogN
 plt.figure('Fig5')
+plot_data(prefix + 'right_pivot_quick_sort_const.txt', '')
 plot_data(prefix + 'right_pivot_quick_sort_monot_incr.txt', '')
 plot_data(prefix + 'right_pivot_quick_sort_monot_decr.txt', '')
 
 # Median of three pivot quick sort
 plt.figure('Fig6')
 plot_data(prefix + 'medof3_quick_sort_const.txt','')
+plt.figure('Fig6.1')
 plot_data(prefix + 'medof3_quick_sort_rand.txt', '')
 plot_data(prefix + 'medof3_quick_sort_monot_incr.txt', '')
 plot_data(prefix + 'medof3_quick_sort_monot_decr.txt', '')
