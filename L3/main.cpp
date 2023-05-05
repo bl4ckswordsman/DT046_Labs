@@ -35,15 +35,30 @@ int main() {
 
     std::cout << "Binary search" << std::endl;
     std::vector<int> rand_vect2;
-    std::vector<bool> vect2(n, true);
     std::uniform_int_distribution<> dis2(0, n);
     for (auto i = 0; i < n; i++) {
         rand_vect2.push_back(dis2(gen));
     }
-    gen_primes(n, vect2);
+    std::vector<int> rand_vect3;
+    std::uniform_int_distribution<> dis3(0, n);
+    for (auto i = 0; i < n; i++) {
+        rand_vect3.push_back(dis3(gen));
+    }
 
-    auto result = binary_search(vect2, 2);
-    std::cout << "Result: " << result << std::endl;
+    TreeNode* root = new TreeNode(rand_vect2);
+    start = std::chrono::high_resolution_clock::now();
+    for (int i : rand_vect3) {
+        if (root->binary_search(root, i) != -1)
+            std::cout << "Found " << i << std::endl;
+        else
+            std::cout << "Not found " << i << std::endl;
+    }
+    end = std::chrono::high_resolution_clock::now();
+    elapsed_seconds = end-start;
+    std::cout << "Binary search elapsed time: " << elapsed_seconds.count() << "s\n";
+
+
+
 
 
 
