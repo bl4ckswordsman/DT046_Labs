@@ -63,67 +63,6 @@ int partition(std::vector<int> &vect_in, int low, int high) {
     return i + 1;  // return the index of pivot
 }
 
-/*int partition(std::vector<int> &vect_in, int low, int high, int pivot) {
-    while (true) {
-// Increment i until vect_in[i] is greater than or equal to pivot
-        while (vect_in[++i] < pivot);
-
-// Decrement j until vect_in[j] is less than or equal to pivot
-        while (j > low && vect_in[--j] > pivot);
-
-        if (i >= j) {
-// If i and j cross or meet, break the loop
-            break;
-        }
-
-// Swap vect_in[i] and vect_in[j]
-        std::swap(vect_in[i], vect_in[j]);
-    }
-
-// Place pivot at its correct position
-    std::swap(vect_in[i], vect_in[high]);
-
-    return i;
-}*
-
-/* ALTERNATIVE
-while (true) {
-// Increment i until vect_in[i] is greater than or equal to pivot
-while (vect_in[++i] < pivot);
-
-// Decrement j until vect_in[j] is less than or equal to pivot
-while (j > low && vect_in[--j] > pivot);
-
-if (i >= j) {
-// If i and j cross or meet, break the loop
-break;
-}
-
-// Swap vect_in[i] and vect_in[j]
-std::swap(vect_in[i], vect_in[j]);
-}
-
-// Place pivot at its correct position
-std::swap(vect_in[i], vect_in[high]);
-
-return i;
-*/
-
-/* OLDER ALTERNATIVE
-
-     int i = low - 1, j = high; // initialize i and j
-    while (true) {
-        while (vect_in[++i] < pivot); // increment i until vect_in[i] >= pivot
-        while (j > low && vect_in[--j] > pivot); // decrement j until vect_in[j] <= pivot or j == low
-        if (i >= j) break; // if i and j cross or meet, break
-        std::swap(vect_in[i], vect_in[j]); // swap vect_in[i] and vect_in[j]
-    }
-    // Place pivot at its correct position
-    std::swap(vect_in[i], vect_in[high]);
-    return i;
-
-*/
-
 
 int partition_m3(std::vector<int> &vect_in, int low, int high, int pivot) {
     int i = low - 1, j = high + 1;
@@ -203,22 +142,7 @@ void m3_piv_quick_sort(std::vector<int> &vect_in, int low, int high) {
         m3_piv_quick_sort(vect_in, low, pi);
         m3_piv_quick_sort(vect_in, pi + 1, high);
     }
-/*
-    if (low < high) {
-        // Find median of 3
-        int pivot = median_of_3(vect_in, low, high);
-
-        // Partition vector around pivot using Hoare's partitioning scheme
-        int p = partition_m3(vect_in, low, high, pivot);
-
-        // Recursively sort left and right sub-arrays
-        m3_piv_quick_sort(vect_in, low, p);
-        m3_piv_quick_sort(vect_in, p + 1, high);
-    }*/
 }
-
-
-
 
 
 void med3_quick_sort_test(std::vector<int> &vect_in) {

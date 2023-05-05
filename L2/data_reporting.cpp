@@ -32,7 +32,8 @@ void measure_sort_perf(const std::string &filename, void (*sorting_func)(std::ve
     const int samp_num = 10;
     // Vector of N values to test
 
-    std::vector<int> samples_v{2000, 3000, 4000, 5000, 6000, 7000, 8000, 12'000, 14'000, 16'000}; //, 30'000, 50'000, 70'000, 100'000};
+    std::vector<int> samples_v{2000, 3000, 4000, 5000, 6000, 7000, 8000, 12'000, 14'000, 16'000,
+                               20'000, 50'000}; //, 30'000, 50'000, 70'000, 100'000};
 
 
     //std::vector<int> samples_v{2000, 4000, 6000, 8000, 12'000, 14'000, 16'000}; //, 30'000, 50'000, 70'000, 100'000};
