@@ -12,6 +12,8 @@
 
 int linear_search(std::vector<bool>& vect, int target);
 
+int linear_search_int(std::vector<int>& vect, int target);
+
 struct TreeNode {
     int data;
     TreeNode* parent;
@@ -35,7 +37,10 @@ struct TreeNode {
     TreeNode(std::vector<int>& vect);
 
     int binary_search(TreeNode* root, int target);
+
 };
+
+int binary_search_int(std::vector<int>& vect, int target);
 
 
 
