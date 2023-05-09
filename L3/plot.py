@@ -51,8 +51,9 @@ def plot_data(file_name, fit_func_expr):
 prefix = 'benchmark_results/'
 
 # Insertion sort
-plt.figure('Fig1')
+plt.figure('Linear search')
 plot_data(prefix + 'linear_search.txt', '')
+plt.figure('Binary search')
 plot_data(prefix + 'binary_search.txt', '')
 
 
