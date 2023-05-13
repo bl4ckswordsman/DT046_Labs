@@ -14,6 +14,8 @@
  */
 void gen_primes_bool(int n, std::vector<bool>& vect);
 
+void gen_n_primes_bool(int n, std::vector<bool>& vect);
+
 
 void gen_primes_int(int n, std::vector<int>& vect);
 
