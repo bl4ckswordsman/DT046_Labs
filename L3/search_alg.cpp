@@ -2,16 +2,17 @@
 // Created by amarildo on 2023-04-30.
 //
 #include <iostream>
+#include <queue>
 #include "search_alg.h"
 
-
-int linear_search(std::vector<bool> &vect, int target) {
+int linear_search(std::vector<int> &vect, int target) {
     for (int i = 2; i < vect.size(); i++) {
-        if (vect[i] == true && i == target)
+        if (vect[i] == target)
             return i;
     }
     return -1;
 }
+
 
 int binary_search_int(std::vector<int> &vect, int target) {
     int low = 0;
@@ -29,12 +30,13 @@ int binary_search_int(std::vector<int> &vect, int target) {
     return -1;
 }
 
-int linear_search_int(std::vector<int> &vect, int target) {
-    for (int i = 2; i < vect.size(); i++) {
-        if (vect[i] == target)
-            return i;
-    }
-    return -1;
+
+
+int bin_search_tree(std::vector<int> &vect, int target) {
+    TreeNode* root = new TreeNode(vect);
+    int result = root->binary_search(root, target);
+    delete root;
+    return result;
 }
 
 
@@ -96,5 +98,9 @@ TreeNode::TreeNode(std::vector<int> &vect) {
     }
 
 }
+
+
+
+
 
 

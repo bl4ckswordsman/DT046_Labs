@@ -19,16 +19,20 @@ int main() {
     //measure_search_perf(prfx + "linear_search.txt", linear_search, gen_primes);
     //measure_search_perf("binary_search.csv", binary_search, gen_primes);
 
-    std::vector<int> samples = {1'000, 2'000, 3'000, 4'000, 5'000, 10'000, 12'000, 14'000, 16'000,
-                                18'000, 20'000};
+    std::vector<int> samples = {1'000, 1'500, 2'000, 2'500, 3'000, 3'500, 4'000, 4'500, 5'000, 10'000, 12'000, 14'000, 16'000,
+                                18'000, 20'000, 30'000, 35'000, 40'000};
     std::vector<std::vector<int>> data(samples.size());
     for (auto i = 0; i < samples.size(); i++) {
         gen_rand(samples[i], data[i]);
     }
 
 
-    measure_search_perf3(prfx + "linear_search.txt", linear_search_int, data);
+    measure_search_perf3(prfx + "linear_search.txt", linear_search, data);
     measure_search_perf3(prfx + "binary_search.txt", binary_search_int, data);
+    //measure_search_perf3(prfx + "binary_tree_search.txt", bin_search_tree, data);
+
+
+
 
 
 

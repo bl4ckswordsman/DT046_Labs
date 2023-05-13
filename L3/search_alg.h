@@ -3,6 +3,8 @@
 //
 
 #include <vector>
+#include <cmath>
+#include <iostream>
 
 #ifndef L3_SEARCH_ALG_H
 #define L3_SEARCH_ALG_H
@@ -10,9 +12,7 @@
 #endif //L3_SEARCH_ALG_H
 
 
-int linear_search(std::vector<bool>& vect, int target);
-
-int linear_search_int(std::vector<int>& vect, int target);
+int linear_search(std::vector<int>& vect, int target);
 
 struct TreeNode {
     int data;
@@ -38,9 +38,13 @@ struct TreeNode {
 
     int binary_search(TreeNode* root, int target);
 
+
+
 };
 
 int binary_search_int(std::vector<int>& vect, int target);
+
+int bin_search_tree(std::vector<int>& vect, int target);
 
 
 
