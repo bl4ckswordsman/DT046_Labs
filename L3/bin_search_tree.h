@@ -20,6 +20,8 @@ int binary_search_tree(std::vector<int>& vect, int target);
 
 void build_tree(std::vector<int>& vect);
 
+void build_tree2(std::vector<int>& vect);
+
 
 
 #endif //DT046G_L3_BIN_SEARCH_TREE_H

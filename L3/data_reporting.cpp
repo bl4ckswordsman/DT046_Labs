@@ -121,6 +121,8 @@ void measure_search_perf4(const std::string &filename, int (*search_func)(std::v
         std::vector<int> primes;
         gen_primes_int(vect.size(), primes);
         build_tree(primes);
+        //build_tree2(primes);
+
         for (auto it = 0; it < samp_num; it++) {
 
             const int num_searches = 1000;

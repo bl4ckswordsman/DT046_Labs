@@ -23,12 +23,31 @@ int main() {
         gen_rand(samples[i], data[i]);
     }
 
+/*    std::vector<std::vector<int>> balanced_data(samples.size());
+    for (auto i = 0; i < samples.size(); i++) {
+        gen_rand((samples[i]*samples[i])-1, balanced_data[i]);
+    }*/
 
-    measure_search_perf3(prfx + "linear_search.txt", linear_search, data);
-    measure_search_perf3(prfx + "binary_search.txt", binary_search_int, data);
+    std::vector<int> balanced_samples(2);
+    balanced_samples[0] = (1000*1000) - 1;
+    balanced_samples[1] = (1500*1500) - 1;
+
+/*    for (auto i = 0; i < samples.size(); i++) {
+        balanced_samples[i] =(samples[i]*samples[i]-1);
+    }*/
+
+    std::vector<std::vector<int>> balanced_data(balanced_samples.size());
+    for (auto i = 0; i < balanced_samples.size(); i++) {
+        gen_rand(balanced_samples[i], balanced_data[i]);
+    }
+
+
+    //measure_search_perf3(prfx + "linear_search.txt", linear_search, data);
+    //measure_search_perf3(prfx + "binary_search.txt", binary_search_int, data);
     //measure_search_perf3(prfx + "binary_tree_search.txt", bin_search_tree, data);
 
-    measure_search_perf4(prfx + "binary_tree_search.txt", binary_search_tree, data);
+    //measure_search_perf4(prfx + "binary_tree_search.txt", binary_search_tree, data);
+    measure_search_perf4(prfx + "binary_tree_search.txt", binary_search_tree, balanced_data);
 
 
 
