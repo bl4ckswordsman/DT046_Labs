@@ -26,9 +26,9 @@ def plot_data(file_name, fit_func_expr, is_log=False):
     df = pd.read_csv(file_name, delim_whitespace=True, skiprows=0)
 
     # Set the plot title
-    with open(file_name) as f:
-        plot_title_temp = f.readline().strip()
-    plot_title = "NULL"  # plot_title_temp[:plot_title_temp.index("sort") + len("sort")]
+    # with open(file_name) as f:
+    #     plot_title_temp = f.readline().strip()
+    plot_title = ""  # plot_title_temp[:plot_title_temp.index("sort") + len("sort")]
 
     # Set the first column as the index
     df = df.set_index('N')
@@ -50,7 +50,7 @@ def plot_data(file_name, fit_func_expr, is_log=False):
         x_new = np.linspace(n[0], n[-1], 100)
         y_new = np.polyval(popt, x_new)
 
-    point_lab = "NULL"  # get_point_lab(plot_title_temp)
+    point_lab = ""  # get_point_lab(plot_title_temp)
     plt.errorbar(n, mean_time_ms, yerr=stdev_ms, fmt='o', capsize=5, label=point_lab)  # 'o-' for line
     plt.plot(x_new, y_new, '-', label=fit_func_expr + ' (approx.fit)')  # point_lab)     # , label='Fit'
 
