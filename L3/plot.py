@@ -69,7 +69,7 @@ plot_data(prefix + 'linear_search.txt', '')
 plt.figure('Binary search')
 plot_data(prefix + 'binary_search.txt', '', True)
 plt.figure('Binary search tree')
-plot_data(prefix + 'binary_tree_search.txt', '')
+plot_data(prefix + 'binary_tree_search.txt', '', True)
 
 # Display the plot
 plt.show()

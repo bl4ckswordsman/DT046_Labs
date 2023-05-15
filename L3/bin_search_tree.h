@@ -14,11 +14,17 @@ struct Tree_node {
 };
 
 
-void insert(Tree_node* node, int value);
+void insert(Tree_node*& node, int value);
+
+int binary_search_tree(Tree_node* root, int target);
 
 int binary_search_tree(std::vector<int>& vect, int target);
 
-void build_tree(std::vector<int>& vect);
+void delete_tree(Tree_node* node);
+
+void build_tree3(std::vector<int>& vect, Tree_node*& root);
+void build_tree(std::vector<int>& vect, Tree_node*& root);
+//void build_tree(std::vector<int>& vect);
 
 void build_tree2(std::vector<int>& vect);
 
