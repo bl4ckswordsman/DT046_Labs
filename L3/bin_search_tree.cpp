@@ -78,10 +78,11 @@ int binary_search_tree(std::vector<int>& vect, int target) {
 }*/
 
 //V2
-void build_tree(std::vector<int>& vect, Tree_node*& root) {
+Tree_node* build_tree(std::vector<int>& vect, Tree_node*& root) {
     for (int value : vect) {
         insert(root, value);
     }
+    return root;
 }
 
 void build_tree3(std::vector<int>& vect, Tree_node*& root) {
@@ -162,4 +163,21 @@ void delete_tree(Tree_node *node) {
     delete_tree(node->left);
     delete_tree(node->right);
     delete node;
+}
+
+Tree_node* create_balanced_tree(std::vector<int> &vect, int start, int end) {
+    if (start > end) {
+        return nullptr;
+    }
+
+    int mid = (start + end) / 2;
+    Tree_node *node = new Tree_node;
+    node->data = vect[mid];
+    node->left = create_balanced_tree(vect, start, mid - 1);
+    node->right = create_balanced_tree(vect, mid + 1, end);
+    return node;
+}
+
+Tree_node *create_balanced_tree(std::vector<int> &vect) {
+    return create_balanced_tree(vect, 0, vect.size() - 1);
 }

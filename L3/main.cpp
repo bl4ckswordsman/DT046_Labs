@@ -24,6 +24,12 @@ int main() {
         gen_rand(samples[i], data[i]);
     }
 
+    std::vector<int> samples2 = {999, 224, 399, 624, 899, 2499, 4899, 8099, 12099, 14399, 39999, 624999, 675999};
+    std::vector<std::vector<int>> data2(samples2.size());
+    for (auto i = 0; i < samples2.size(); i++) {
+        gen_rand(samples2[i], data2[i]);
+    }
+
 /*    std::vector<std::vector<int>> balanced_data(samples.size());
     for (auto i = 0; i < samples.size(); i++) {
         gen_rand((samples[i]*samples[i])-1, balanced_data[i]);

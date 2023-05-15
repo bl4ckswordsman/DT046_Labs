@@ -13,6 +13,9 @@ struct Tree_node {
     Tree_node* right;
 };
 
+Tree_node* create_balanced_tree(std::vector<int>& vect, int start, int end);
+Tree_node* create_balanced_tree(std::vector<int>& vect);
+
 
 void insert(Tree_node*& node, int value);
 
@@ -23,7 +26,7 @@ int binary_search_tree(std::vector<int>& vect, int target);
 void delete_tree(Tree_node* node);
 
 void build_tree3(std::vector<int>& vect, Tree_node*& root);
-void build_tree(std::vector<int>& vect, Tree_node*& root);
+Tree_node* build_tree(std::vector<int>& vect, Tree_node*& root);
 //void build_tree(std::vector<int>& vect);
 
 void build_tree2(std::vector<int>& vect);

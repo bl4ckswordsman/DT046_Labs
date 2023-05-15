@@ -5,7 +5,7 @@ from scipy.optimize import curve_fit
 
 import matplotlib
 
-matplotlib.use('Qt5Agg')
+#matplotlib.use('Qt5Agg')
 
 
 # Get the point label from the plot title of the format "XXXXX_sort_LABEL"
@@ -20,15 +20,15 @@ def function_fit(x, a, b, c):
 def function_fit_log(x, a, b):
     return a * np.log(x) + b
 
-
-def plot_data(file_name, fit_func_expr, is_log=False):
+# def plot_data(file_name, fit_func_expr, is_log=False):
+def plot_data(ax, file_name, fit_func_expr, is_log=False):
     # Read in the data file using pandas
     df = pd.read_csv(file_name, delim_whitespace=True, skiprows=0)
 
     # Set the plot title
     # with open(file_name) as f:
     #     plot_title_temp = f.readline().strip()
-    plot_title = ""  # plot_title_temp[:plot_title_temp.index("sort") + len("sort")]
+    plot_title = file_name  # plot_title_temp[:plot_title_temp.index("sort") + len("sort")]
 
     # Set the first column as the index
     df = df.set_index('N')
@@ -51,25 +51,25 @@ def plot_data(file_name, fit_func_expr, is_log=False):
         y_new = np.polyval(popt, x_new)
 
     point_lab = ""  # get_point_lab(plot_title_temp)
-    plt.errorbar(n, mean_time_ms, yerr=stdev_ms, fmt='o', capsize=5, label=point_lab)  # 'o-' for line
-    plt.plot(x_new, y_new, '-', label=fit_func_expr + ' (approx.fit)')  # point_lab)     # , label='Fit'
+    ax.errorbar(n, mean_time_ms, yerr=stdev_ms, fmt='o', capsize=5, label=point_lab)  # 'o-' for line
+    ax.plot(x_new, y_new, '-', label=fit_func_expr + ' (approx.fit)')  # point_lab)     # , label='Fit'
 
     # Set the title and axis labels
-    plt.title(plot_title)
-    plt.xlabel('N')
-    plt.ylabel('Mean time [ms]')
-    plt.legend()
+    ax.set_title(plot_title)
+    ax.set_xlabel('N')
+    ax.set_ylabel('Mean time [ms]')
+    ax.legend()
 
 
 prefix = 'benchmark_results/'
 
 # Insertion sort
-plt.figure('Linear search')
-plot_data(prefix + 'linear_search.txt', '')
-plt.figure('Binary search')
-plot_data(prefix + 'binary_search.txt', '', True)
-plt.figure('Binary search tree')
-plot_data(prefix + 'binary_tree_search.txt', '', True)
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 
+plot_data(axes[0], prefix + 'linear_search.txt', '')
+plot_data(axes[1], prefix + 'binary_search.txt', '', True)
+plot_data(axes[2], prefix + 'binary_tree_search.txt', '', True)
+
+plt.tight_layout()
 # Display the plot
 plt.show()

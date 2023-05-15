@@ -106,7 +106,7 @@ void measure_search_perf3(const std::string &filename, int (*search_func)(std::v
 }
 
 //METHOD 1 for binary search tree
-void measure_search_perf4(const std::string &filename, int (*search_func)(std::vector<int> &, int),
+void measure_search_perf4(const std::string &filename, int (*search_func)(Tree_node*, int),
                           std::vector<std::vector<int>> &data_to_search_vect) {
     std::ofstream out_file(filename);
     std::cout << filename << std::endl;
@@ -123,7 +123,7 @@ void measure_search_perf4(const std::string &filename, int (*search_func)(std::v
         //build_tree(primes);
 
         Tree_node *root = nullptr;
-        build_tree3(primes, root);
+        auto tree1 = create_balanced_tree(primes);
         //build_tree2(primes);
 
         for (auto it = 0; it < samp_num; it++) {
@@ -133,7 +133,7 @@ void measure_search_perf4(const std::string &filename, int (*search_func)(std::v
 
             auto start = std::chrono::high_resolution_clock::now();
             for (int i = 0; i < num_searches; i++) {
-                results[i] = search_func(primes, vect[i]);
+                results[i] = search_func(tree1, vect[i]);
             }
             auto end = std::chrono::high_resolution_clock::now();
 
@@ -149,7 +149,7 @@ void measure_search_perf4(const std::string &filename, int (*search_func)(std::v
         double mean = std::accumulate(times.begin(), times.end(), 0.0) / times.size();
         double stdev = calculate_stdev(times, mean);
         out_file << std::left << std::setw(15) << vect.size() << std::setw(15) << mean << std::setw(15) << stdev
-                 << std::setw(15) << times.size() << std::endl;
+                 << std::setw(15) << samp_num /*times.size()*/ << std::endl;
         std::cout << "N: " << vect.size() << " mean: " << mean << " stdev: " << stdev << std::endl;
 
     }

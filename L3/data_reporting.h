@@ -6,6 +6,7 @@
 #define L3_DATA_REPORTING_H
 
 #include "data_gen.h"
+#include "bin_search_tree.h"
 
 #include <vector>
 #include <cmath>
@@ -21,7 +22,7 @@ double calculate_stdev(std::vector<double> data, double mean);
 void measure_search_perf3(const std::string& filename, int (*search_func)(std::vector<int>&, int),
                        std::vector<std::vector<int>>& data_to_search_vect);
 
-void measure_search_perf4(const std::string &filename, int (*search_func)(std::vector<int> &, int),
+void measure_search_perf4(const std::string &filename, int (*search_func)(Tree_node*, int),
                           std::vector<std::vector<int>> &data_to_search_vect);
 
 #endif //L3_DATA_REPORTING_H
