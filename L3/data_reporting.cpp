@@ -5,6 +5,7 @@
 
 #include "data_reporting.h"
 #include "bin_search_tree.h"
+#include "hash_table.h"
 
 
 double calculate_stdev(std::vector<double> data, double mean) {
@@ -99,7 +100,7 @@ void measure_search_perf3(const std::string &filename, int (*search_func)(std::v
         double mean = std::accumulate(times.begin(), times.end(), 0.0) / times.size();
         double stdev = calculate_stdev(times, mean);
         out_file << std::left << std::setw(15) << vect.size() << std::setw(15) << mean << std::setw(15) << stdev
-                 << std::setw(15) << times.size() << std::endl;
+                 << std::setw(15) << samp_num /*times.size()*/ << std::endl;
         std::cout << "N: " << vect.size() << " mean: " << mean << " stdev: " << stdev << std::endl;
 
     }
@@ -155,6 +156,57 @@ void measure_search_perf4(const std::string &filename, int (*search_func)(Tree_n
     }
 }
 
+//Method 1 for hash table
+void measure_search_perf5(const std::string &filename, int (*hash_search)(int),
+                          std::vector<std::vector<int>> &data_to_search_vect) {
+    std::ofstream out_file(filename);
+    std::cout << filename << std::endl;
+    out_file << std::left << std::setw(15) << "N" << std::setw(15) << "T[ms]" << std::setw(15) << "Stdev[ms]"
+             << std::setw(15) << "Samples" << "\n";
+    const int samp_num = 20;
+
+    std::vector<double> stdevs;
+    std::vector<double> means;
+    for (auto vect: data_to_search_vect) {
+        std::vector<double> times;
+        std::vector<int> primes;
+        gen_primes_int(vect.size(), primes);
+        //build_tree(primes);
+
+
+        vect_to_hash_table(primes);
+        //build_tree2(primes);
+
+        for (auto it = 0; it < samp_num; it++) {
+
+            const int num_searches = 1000;
+            std::vector<int> results(num_searches);
+
+            auto start = std::chrono::high_resolution_clock::now();
+            for (int i = 0; i < num_searches; i++) {
+                results[i] = hash_search(vect[i]);
+            }
+            auto end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> elapsed = end - start;
+
+            for (int i = 0; i < num_searches; i++) {
+                times.push_back(elapsed.count());
+            }
+            double mean_per_val = elapsed.count() / results.size();
+            times.push_back(mean_per_val);
+
+        }
+        double mean = std::accumulate(times.begin(), times.end(), 0.0) / times.size();
+        double stdev = calculate_stdev(times, mean);
+        out_file << std::left << std::setw(15) << vect.size() << std::setw(15) << mean << std::setw(15) << stdev
+                 << std::setw(15) << samp_num /*times.size()*/ << std::endl;
+        std::cout << "N: " << vect.size() << " mean: " << mean << " stdev: " << stdev << std::endl;
+
+    }
+
+}
+
 
 // METHOD 2: searching for a fixed time period and then calculating the average search time per value
 /*void measure_search_perf3(const std::string &filename, int (*search_func)(std::vector<int> &, int),
@@ -192,6 +244,8 @@ void measure_search_perf4(const std::string &filename, int (*search_func)(Tree_n
         std::cout << "N: " << vect.size() << " mean: " << mean << " stdev: " << stdev << std::endl;
     }
 }*/
+
+
 
 
 
